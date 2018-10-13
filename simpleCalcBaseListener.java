@@ -75,13 +75,13 @@ public class simpleCalcBaseListener implements simpleCalcListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogOp(simpleCalcParser.LogOpContext ctx) { }
+	@Override public void enterLogicalOp(simpleCalcParser.LogicalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogOp(simpleCalcParser.LogOpContext ctx) { }
+	@Override public void exitLogicalOp(simpleCalcParser.LogicalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

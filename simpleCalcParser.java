@@ -18,7 +18,7 @@ public class simpleCalcParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, OP1=13, OP2=14, NUM=15, ID=16, WHITESPACE=17, 
-		COMMENT=18, CONST=19;
+		COMMENT=18;
 	public static final int
 		RULE_start = 0, RULE_assign = 1, RULE_stmt = 2, RULE_cond = 3, RULE_expr = 4;
 	public static final String[] ruleNames = {
@@ -27,11 +27,11 @@ public class simpleCalcParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'='", "'if'", "'('", "')'", "'else'", "'while'", "'=='", "'!='", 
-		"'<'", "'>'", "'&&'", "'||'", null, null, null, null, null, null, "'const'"
+		"'<'", "'>'", "'&&'", "'||'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, "OP1", "OP2", "NUM", "ID", "WHITESPACE", "COMMENT", "CONST"
+		null, "OP1", "OP2", "NUM", "ID", "WHITESPACE", "COMMENT"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -404,7 +404,7 @@ public class simpleCalcParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class LogOpContext extends CondContext {
+	public static class LogicalOpContext extends CondContext {
 		public CondContext c1;
 		public Token op;
 		public CondContext c2;
@@ -414,18 +414,18 @@ public class simpleCalcParser extends Parser {
 		public CondContext cond(int i) {
 			return getRuleContext(CondContext.class,i);
 		}
-		public LogOpContext(CondContext ctx) { copyFrom(ctx); }
+		public LogicalOpContext(CondContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof simpleCalcListener ) ((simpleCalcListener)listener).enterLogOp(this);
+			if ( listener instanceof simpleCalcListener ) ((simpleCalcListener)listener).enterLogicalOp(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof simpleCalcListener ) ((simpleCalcListener)listener).exitLogOp(this);
+			if ( listener instanceof simpleCalcListener ) ((simpleCalcListener)listener).exitLogicalOp(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof simpleCalcVisitor ) return ((simpleCalcVisitor<? extends T>)visitor).visitLogOp(this);
+			if ( visitor instanceof simpleCalcVisitor ) return ((simpleCalcVisitor<? extends T>)visitor).visitLogicalOp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -516,28 +516,28 @@ public class simpleCalcParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 					case 1:
 						{
-						_localctx = new LogOpContext(new CondContext(_parentctx, _parentState));
-						((LogOpContext)_localctx).c1 = _prevctx;
+						_localctx = new LogicalOpContext(new CondContext(_parentctx, _parentState));
+						((LogicalOpContext)_localctx).c1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_cond);
 						setState(68);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(69);
-						((LogOpContext)_localctx).op = match(T__10);
+						((LogicalOpContext)_localctx).op = match(T__10);
 						setState(70);
-						((LogOpContext)_localctx).c2 = cond(3);
+						((LogicalOpContext)_localctx).c2 = cond(3);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new LogOpContext(new CondContext(_parentctx, _parentState));
-						((LogOpContext)_localctx).c1 = _prevctx;
+						_localctx = new LogicalOpContext(new CondContext(_parentctx, _parentState));
+						((LogicalOpContext)_localctx).c1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_cond);
 						setState(71);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 						setState(72);
-						((LogOpContext)_localctx).op = match(T__11);
+						((LogicalOpContext)_localctx).op = match(T__11);
 						setState(73);
-						((LogOpContext)_localctx).c2 = cond(2);
+						((LogicalOpContext)_localctx).c2 = cond(2);
 						}
 						break;
 					}
@@ -868,7 +868,7 @@ public class simpleCalcParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25l\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\24l\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\7\2\24"+
 		"\n\2\f\2\16\2\27\13\2\3\2\6\2\32\n\2\r\2\16\2\33\3\2\3\2\3\3\3\3\3\3\3"+
 		"\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\62\n\4"+

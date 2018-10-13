@@ -16,7 +16,6 @@ NUM=15
 ID=16
 WHITESPACE=17
 COMMENT=18
-CONST=19
 '='=1
 'if'=2
 '('=3
@@ -29,4 +28,3 @@ CONST=19
 '>'=10
 '&&'=11
 '||'=12
-'const'=19

@@ -43,12 +43,12 @@ public interface simpleCalcVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparison(simpleCalcParser.ComparisonContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code LogOp}
+	 * Visit a parse tree produced by the {@code LogicalOp}
 	 * labeled alternative in {@link simpleCalcParser#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogOp(simpleCalcParser.LogOpContext ctx);
+	T visitLogicalOp(simpleCalcParser.LogicalOpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Parenthesis}
 	 * labeled alternative in {@link simpleCalcParser#expr}.

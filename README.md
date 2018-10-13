@@ -1,2 +1,2 @@
 # LexerParser
-Antlr4 LexerParser
+Antlr4 Java lexer og parser
