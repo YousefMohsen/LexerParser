@@ -2,12 +2,10 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
-
 import java.io.IOException;
 
 public class main {
     public static void main(String[] args) throws IOException {
-
         // we expect exactly one argument: the name of the input file
         if (args.length != 1) {
             System.err.println("\n");
@@ -36,10 +34,9 @@ public class main {
 
         // Construct an interpreter and run it on the parse tree
         Interpreter interpreter = new Interpreter();
-        Double result = interpreter.visit(parseTree);
-        System.out.println("Enviorment: \n " + interpreter.toString());
-
-        System.out.println("\nThe result is: " + result);
+        Double result = interpreter.visit(parseTree) ;
+        System.out.println("Environment: \n " + interpreter.toString());
+        System.out.println( result!=null ?"\nThe result is: "+result :"" );
 
     }
 }
@@ -61,35 +58,30 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
             visit(a);
         }
 
-
         return visit(ctx.e);
     }
-
 
     public Double visitAssign(simpleCalcParser.AssignContext ctx) {
         Double d = visit(ctx.e);
         env.setVariable(ctx.x.getText(), d);
         return d;
     }
+
     public Double visitAssignVar(simpleCalcParser.AssignVarContext ctx) {
         Double d = visit(ctx.e);
         env.setVariable(ctx.x.getText(), d);
         return d;
     }
 
-
     public Double visitParenthesis(simpleCalcParser.ParenthesisContext ctx) {
         return visit(ctx.e);
     }
-
 
     public Double visitVariable(simpleCalcParser.VariableContext ctx) {
         return env.getVariable(ctx.x.getText());
     }
 
-
     public Double visitCalculate(simpleCalcParser.CalculateContext ctx) {
-
         switch (ctx.op.getText()) {
             case "+":
                 return visit(ctx.e1) + visit(ctx.e2);
@@ -100,26 +92,17 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
             default:
                 return visit(ctx.e1) / visit(ctx.e2);
         }
-
     }
-
-
-   /* public Double visitVar(simpleCalcParser.VarContext ctx) {
-
-        //return Double.parseDouble(ctx.getText()); // new Double(ctx.NUM()); // Integer.parseInt(string);
-
-        return 1.0;
-    }*/
 
     public Double visitConstant(simpleCalcParser.ConstantContext ctx) {
         return Double.parseDouble(ctx.n.getText()); // new Double(ctx.NUM()); // Integer.parseInt(string);
-
     }
 
     public Double visitComparison(simpleCalcParser.ComparisonContext ctx) {
         try {
-            int e1 = Integer.parseInt(ctx.e1.getText());
-            int e2 = Integer.parseInt(ctx.e2.getText());
+            Double e1 = visit(ctx.e1);
+            Double e2 = visit(ctx.e2);
+
             switch (ctx.op.getText()) {
                 case "==":
                     return e1 == e2 ? 1.0 : 0.0;
@@ -132,16 +115,10 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
                 default:
                     return 0.0;
             }
-
         } catch (NumberFormatException ex) {
             return 0.0;
         }
-
     }
-
-
-
-
 
     public Double visitLogicalOp(simpleCalcParser.LogicalOpContext ctx) {
         try {
@@ -155,21 +132,11 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
                 default:
                     return 0.0;
             }
-
         } catch (NumberFormatException ex) {
             return 0.0;
-
         }
-
     }
 
-    /* public Double visitStmt(simpleCalcParser.StmtContext ctx) {
-         if( visit(ctx.c)==1.0){
-             return visit(ctx.e1);
-         }
-         return visit(ctx.e2);
-
-     }*/
     public Double visitIfStatment(simpleCalcParser.IfStatmentContext ctx) {
         if( visit(ctx.c)==1.0){
             return visit(ctx.e1);
@@ -177,47 +144,26 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
         return visit(ctx.e2);
     }
 
-
     public Double visitWhileStatment(simpleCalcParser.WhileStatmentContext ctx) {
-        while ( visit(ctx.c)==1.0){
+        while (visit(ctx.c)==1.0){
             visit(ctx.e);
         }
         return 0.0;
     }
 
     public Double visitEquals(simpleCalcParser.EqualsContext ctx) {
-
         try {
             int e1 = Integer.parseInt(ctx.e1.getText());
             int e2 = Integer.parseInt(ctx.e2.getText());
 
             return e1 == e2 ? 1.0 : 0.0;
-
         }
-
         catch (NumberFormatException ex) {
             return 0.0;
         }
-
     }
 
-
-/*
-    public Double visitStmts(simpleCalcParser.StmtsContext ctx) {
-        return 1.0;
-    }*/
-/*
-    public Double visitProg(simpleCalcParser.ProgContext ctx) {
-        return 1.0;
-    }*/
-
-    /*public Double visitStatement(simpleCalcParser.StatementContext ctx) {
-        return 1.0;
-    }
-*/
     public String toString(){
         return  " "+env.toString();
-
     }
-
 }

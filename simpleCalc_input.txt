@@ -1,2 +1,18 @@
- if(10==10 && 5!=2) x=0 else x=20
- x
+//assign
+g=0
+x=2
+y=4
+xy=x+y
+//xy er lig 6
+
+//while løkke
+while(g<5) g=g+1
+//g er lig 5
+//if-else-statement og logiske operatorer
+if(10==10 && 5!=2) x=0 else x=20
+if(20>10 ||  2==2) y=3 else y=8
+// x er lig 20 og y er lig 3
+
+//regnstykke
+2+2*y+x/g
+//2+2*y+x/g = 2+2*3+20/5 = 12
