@@ -15,6 +15,8 @@ stmt:
 
 cond: 	       e1=expr  op='==' e2=expr #Comparison
               | e1=expr op='!=' e2=expr #Comparison
+              | e1=expr op='<' e2=expr #Comparison
+              | e1=expr op='>' e2=expr #Comparison
               | c1=cond op='&&' c2=cond #LogOp
               | c1=cond op='||' c2=cond #LogOp
 

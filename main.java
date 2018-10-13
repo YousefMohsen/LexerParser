@@ -128,7 +128,11 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
                 case "==":
                     return e1 == e2 ? 1.0 : 0.0;
                 case "!=":
-                    return e1 != e2 ? 0.0 : 0.0;
+                    return e1 != e2 ? 1.0 : 0.0;
+                case "<":
+                    return e1 < e2 ? 1.0 : 0.0;
+                case ">":
+                    return e1 > e2 ? 1.0 : 0.0;
                 default:
                     return 0.0;
             }
@@ -149,7 +153,7 @@ class Interpreter extends AbstractParseTreeVisitor<Double> implements simpleCalc
             Double c2 = visit(ctx.c2);
             switch (ctx.op.getText()) {
                 case "&&":
-                    return c1 - c2 == 0.0 ? 1.0 : 0.0;
+                    return c1 ==1.0 &&  c2 == 1.0 ? 1.0 : 0.0;
                 case "||":
                     return c1==1.0 || c2==1.0 ? 1.0 :  0.0;
                 default:
